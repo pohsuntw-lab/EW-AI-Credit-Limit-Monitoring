@@ -1,0 +1,25 @@
+{
+  "name": "ew-ai-credit-limit-monitor",
+  "version": "0.1.0",
+  "description": "Read Codex and Work allowance, compare reset intelligence, and recommend the best next action. / 讀取 Codex 與工作模式額度、比對重置情報並提供最佳建議。",
+  "author": {
+    "name": "Embodied Worker Co., Ltd."
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "EW AI Credit Limit Monitor / EW AI 額度監控",
+    "shortDescription": "Visual usage forecasts and reset advice. / 額度預測圖表與重置建議。",
+    "longDescription": "Opens the authenticated Codex Usage page in Work mode, reads allowance and reset facts, checks official OpenAI guidance and codex-resets.com, then produces a bilingual visual report and recommendation. It never applies a reset or purchases credits. / 在工作模式開啟已登入的 Codex 用量後台，讀取額度與重置事實，核對 OpenAI 官方規則及 codex-resets.com，輸出雙語圖表報告與建議；不會執行重置或購買點數。",
+    "developerName": "Embodied Worker Co., Ltd. / 具象職人股份有限公司",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Read"],
+    "defaultPrompt": [
+      "Check my Codex allowance and advise me. / 檢查我的 Codex 額度並提供建議。",
+      "Forecast when my allowance runs out. / 預測我的額度何時用完。",
+      "Compare usage with the latest reset news. / 比對用量與最新重置情報。"
+    ],
+    "brandColor": "#B76E79",
+    "composerIcon": "./assets/rose-gold-elephant-icon.png",
+    "logo": "./assets/rose-gold-elephant-logo.png"
+  }
+}
