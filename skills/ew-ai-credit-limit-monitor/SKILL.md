@@ -5,7 +5,7 @@ description: Read a user's authenticated Codex and Work usage in Work mode, chec
 
 # EW AI Credit Limit Monitor / EW AI 額度監控
 
-Produce a read-only decision report. English always precedes Traditional Chinese in titles, labels, explanations, and recommendations.
+Produce a read-only, chart-first decision dashboard. English always precedes Traditional Chinese in titles, labels, explanations, and recommendations.
 
 ## Entry condition
 
@@ -76,7 +76,17 @@ Read [references/report-format.md](references/report-format.md) and follow it. A
 
 The first and most visually prominent element must be the next scheduled reset. Display its exact date, time, and timezone using the largest Markdown heading. All other metrics, charts, sources, and recommendations follow underneath.
 
-Use native Markdown tables plus rendered Mermaid charts. Keep charts legible on mobile. If a chart cannot be produced because data is missing, show the available values and explain the missing input without fabricating a series.
+Use native `charts_widget_v2` chart cards as the primary report surface. Do not use Mermaid when the native chart widget is available. Do not repeat charted values in paragraphs or large tables.
+
+The default successful report contains:
+
+1. the next reset heading;
+2. one weekly allowance pie chart;
+3. one burn-rate comparison bar chart when the forecast is defensible;
+4. one primary recommendation status with at most three compact facts;
+5. one compact source line.
+
+Keep the dashboard legible on mobile and visually scannable without reading prose. Use a compact Markdown fallback only when a native chart cannot be rendered or required data is missing. Never fabricate a series.
 
 ## Data handling
 
