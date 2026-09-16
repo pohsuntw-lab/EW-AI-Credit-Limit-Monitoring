@@ -1,22 +1,25 @@
 {
   "name": "ew-ai-credit-limit-monitor",
-  "version": "0.1.0",
-  "description": "Read Codex and Work allowance, compare reset intelligence, and recommend the best next action. / 讀取 Codex 與工作模式額度、比對重置情報並提供最佳建議。",
+  "version": "0.1.1+codex.20260916081631",
+  "description": "Read Codex and Work allowance, compare reset intelligence, and recommend the best next action. / \u8b80\u53d6 Codex \u8207\u5de5\u4f5c\u6a21\u5f0f\u984d\u5ea6\u3001\u6bd4\u5c0d\u91cd\u7f6e\u60c5\u5831\u4e26\u63d0\u4f9b\u6700\u4f73\u5efa\u8b70\u3002",
   "author": {
     "name": "Embodied Worker Co., Ltd."
   },
   "skills": "./skills/",
   "interface": {
-    "displayName": "EW AI Credit Limit Monitor / EW AI 額度監控",
-    "shortDescription": "Visual usage forecasts and reset advice. / 額度預測圖表與重置建議。",
-    "longDescription": "Opens the authenticated Codex Usage page in Work mode, reads allowance and reset facts, checks official OpenAI guidance and codex-resets.com, then produces a bilingual visual report and recommendation. It never applies a reset or purchases credits. / 在工作模式開啟已登入的 Codex 用量後台，讀取額度與重置事實，核對 OpenAI 官方規則及 codex-resets.com，輸出雙語圖表報告與建議；不會執行重置或購買點數。",
-    "developerName": "Embodied Worker Co., Ltd. / 具象職人股份有限公司",
+    "displayName": "EW AI Credit Limit Monitor / EW AI \u984d\u5ea6\u76e3\u63a7",
+    "shortDescription": "Chart-first allowance forecasts and reset advice. / \u5716\u8868\u512a\u5148\u7684\u984d\u5ea6\u9810\u6e2c\u8207\u91cd\u7f6e\u5efa\u8b70\u3002",
+    "longDescription": "Opens the authenticated Codex Usage page in Work mode, reads allowance and reset facts, checks official OpenAI guidance and codex-resets.com, then presents a concise bilingual dashboard led by native charts and one clear recommendation. It never applies a reset or purchases credits. / \u5728\u5de5\u4f5c\u6a21\u5f0f\u958b\u555f\u5df2\u767b\u5165\u7684 Codex \u7528\u91cf\u5f8c\u53f0\uff0c\u8b80\u53d6\u984d\u5ea6\u8207\u91cd\u7f6e\u4e8b\u5be6\uff0c\u6838\u5c0d OpenAI \u5b98\u65b9\u898f\u5247\u53ca codex-resets.com\uff0c\u4ee5\u539f\u751f\u5716\u8868\u70ba\u4e3b\u8f38\u51fa\u7cbe\u7c21\u96d9\u8a9e\u5100\u8868\u677f\u8207\u55ae\u4e00\u660e\u78ba\u5efa\u8b70\uff1b\u4e0d\u6703\u57f7\u884c\u91cd\u7f6e\u6216\u8cfc\u8cb7\u9ede\u6578\u3002",
+    "developerName": "Embodied Worker Co., Ltd. / \u5177\u8c61\u8077\u4eba\u80a1\u4efd\u6709\u9650\u516c\u53f8",
     "category": "Productivity",
-    "capabilities": ["Interactive", "Read"],
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
     "defaultPrompt": [
-      "Check my Codex allowance and advise me. / 檢查我的 Codex 額度並提供建議。",
-      "Forecast when my allowance runs out. / 預測我的額度何時用完。",
-      "Compare usage with the latest reset news. / 比對用量與最新重置情報。"
+      "Check my Codex allowance and advise me. / \u6aa2\u67e5\u6211\u7684 Codex \u984d\u5ea6\u4e26\u63d0\u4f9b\u5efa\u8b70\u3002",
+      "Forecast when my allowance runs out. / \u9810\u6e2c\u6211\u7684\u984d\u5ea6\u4f55\u6642\u7528\u5b8c\u3002",
+      "Compare usage with the latest reset news. / \u6bd4\u5c0d\u7528\u91cf\u8207\u6700\u65b0\u91cd\u7f6e\u60c5\u5831\u3002"
     ],
     "brandColor": "#B76E79",
     "composerIcon": "./assets/rose-gold-elephant-icon.png",
