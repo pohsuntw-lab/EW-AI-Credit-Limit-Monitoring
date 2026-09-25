@@ -50,6 +50,18 @@ Replace the example values and timestamps with calculated results. Do not render
 
 Do not add a reset timeline table when the reset heading and burn-chart footer already contain the relevant times. Mention an expiring banked reset only when it materially changes the recommendation.
 
+## Resource governance panel / AI 資源治理面板
+
+When the user supplies a concrete task, show one compact governance line before the recommendation:
+
+```markdown
+**WORK POLICY / 工作策略:** CONSERVE / 節省資源 · **VALUE / 價值:** HIGH · **RISK / 風險:** MEDIUM · **ALLOWANCE / 額度:** CONSTRAINED
+```
+
+Use qualitative labels only. Do not invent token-cost precision when the platform does not expose it.
+
+For coding tasks, add at most one compact execution instruction, for example: `Narrow scope → relevant modules only → normal reasoning → escalate only after evidence / 縮小範圍 → 僅讀相關模組 → 一般推理 → 有證據才升級`.
+
 ## Recommendation panel
 
 Use exactly one primary status:
@@ -58,6 +70,10 @@ Use exactly one primary status:
 - `🟡 SLOW DOWN / 降低消耗`
 - `🟠 WAIT FOR RESET / 等待重置`
 - `🔴 CONSIDER BANKED RESET / 考慮使用儲存重置`
+- `🔵 PROCEED / 正常執行`
+- `🟣 CONSERVE / 節省資源`
+- `⚪ DEFER / 延後`
+- `🧠 DEEP REASONING JUSTIFIED / 可使用深度推理`
 
 Show the status immediately after the charts. State the best action in one sentence, followed by no more than three compact facts. Clearly say `No action was executed / 未執行任何操作`.
 
@@ -78,3 +94,4 @@ Do not add source summaries unless sources conflict or a warning materially affe
 - Do not repeat a number already visible in a chart unless it is the primary recommendation threshold.
 - Do not add an executive summary, methodology section, narrative forecast, or long explanation.
 - Keep the complete report understandable on one mobile screen plus chart scrolling.
+- Do not add a model-routing essay. When task governance is requested, show only the selected policy and the minimum facts that justify it.
