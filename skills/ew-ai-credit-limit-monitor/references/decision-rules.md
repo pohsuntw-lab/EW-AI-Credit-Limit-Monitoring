@@ -1,36 +1,107 @@
-# Decision Rules / 決策規則
+# Resource Governance Decision Rules / AI 資源治理決策規則
 
-Apply these rules in order and explain which one controls the recommendation.
+Apply these rules in order. The goal is not to choose the smartest model; it is to decide how much AI resource a task deserves under the user's current allowance.
 
-## 1. Continue / 繼續使用
+## 1. Classify the workload / 工作分級
 
-Recommend continuing when projected exhaustion is at or after the scheduled reset. Do not recommend a banked or paid reset merely because one is available.
+Score qualitatively from LOW / MEDIUM / HIGH:
 
-## 2. Reduce burn rate / 降低消耗速度
+- **Value / 價值** — business or user value if completed now.
+- **Risk / 風險** — consequence of an incorrect result. Safety, security, money, production, data integrity, and irreversible changes raise risk.
+- **Urgency / 緊急度** — cost of waiting until the next reset.
+- **Difficulty / 難度** — uncertainty, cross-module reasoning, debugging depth, or architectural complexity.
+- **Failure history / 失敗紀錄** — whether cheaper or ordinary attempts already failed.
 
-When projected exhaustion is before the scheduled reset but enough allowance remains, show the required maximum daily consumption and the required percentage reduction. Reserve banked resets for a real interruption risk.
+Do not equate long duration or large repositories with high reasoning difficulty.
 
-## 3. Wait for the five-hour reset / 等待五小時重置
+## 2. Read the allowance state / 讀取額度狀態
 
-If the five-hour window is the only binding limit and weekly allowance remains healthy, normally recommend waiting for the five-hour reset. A full reset would also restart the weekly period and can waste weekly allowance.
+Use authenticated account facts when available.
 
-## 4. Use a banked reset / 使用儲存重置
+Classify weekly remaining allowance:
 
-Recommend considering a banked reset only when:
+- **HEALTHY / 充足:** > 50%
+- **WATCH / 注意:** 25–50%
+- **CONSTRAINED / 吃緊:** 10–25%
+- **CRITICAL / 臨界:** < 10%
 
-- an eligible limit will block important work before its normal reset; or
-- a banked reset is near expiry and meaningful work remains.
+These are governance defaults, not OpenAI limits. If projected exhaustion is earlier than reset, treat the state one level more conservatively.
 
-Prefer the earliest-expiring eligible reset. State how using it changes the weekly reset schedule. Never click it.
+Also consider five-hour limits, banked resets, credits, and exact time until the next reset.
 
-## 5. Buy only after free options / 免費選項用完後才考慮購買
+## 3. Select one governance policy / 選擇一項治理策略
 
-Do not recommend purchasing credits or an instant reset while a suitable free banked reset remains, unless preserving that reset has a clearly higher value. State that purchased resets apply immediately and cannot be saved.
+### PROCEED / 正常執行
+Use when allowance is healthy, or the task is high-value and the expected resource use is reasonable.
 
-## 6. Confidence / 信心程度
+### CONSERVE / 節省資源
+Use when allowance is WATCH or CONSTRAINED and the task should continue.
 
-- High: account timestamps, reset history, percentages, and current time are available.
-- Medium: current percentage and reset time are available but cycle start is inferred from an official seven-day rule.
-- Low: one or more required timestamps are missing. Avoid a precise exhaustion time.
+Prefer:
+- narrow scope and explicit acceptance criteria;
+- reuse known context;
+- relevant files/modules only;
+- no unnecessary repository-wide rescans;
+- no unnecessary parallel agents;
+- normal/medium reasoning unless evidence justifies escalation;
+- stop immediately when acceptance criteria pass.
 
-Official account data overrides third-party reset intelligence when they conflict.
+### DEFER / 延後
+Use when allowance is CONSTRAINED or CRITICAL and the task is low urgency and low consequence if postponed.
+
+Never defer critical incident response, safety work, data-integrity repair, security remediation, or another task where waiting creates material risk merely to preserve credits.
+
+### DEEP REASONING JUSTIFIED / 可使用深度推理
+Use when risk or value is HIGH and the problem genuinely requires deeper reasoning, or when two well-scoped ordinary attempts failed without resolving the root cause.
+
+Allowance pressure alone must not force a lower-quality approach where correctness is material.
+
+## 4. Escalation rule / 升級規則
+
+Before recommending deeper reasoning, first check whether the problem can be reduced by better scope, better evidence, tests, logs, or a smaller reproduction.
+
+Escalate when:
+- two properly scoped attempts failed; or
+- evidence shows an architectural, concurrency, data-integrity, security, or similarly high-risk problem; or
+- incorrect output would create material consequences.
+
+After diagnosis or architecture is settled, recommend returning to ordinary resource use for mechanical implementation when appropriate.
+
+Do not claim the plugin switched a model unless the active platform explicitly exposes and confirms that action.
+
+## 5. Reset-aware scheduling / 感知重置的排程
+
+When a non-urgent high-consumption task can wait with little cost and reset is near, DEFER may be more economical than consuming scarce allowance.
+
+When important work will be blocked before reset:
+1. reduce avoidable burn first;
+2. consider an eligible banked reset when justified;
+3. consider paid credits/reset only after free options and timing have been evaluated.
+
+Never execute a reset or purchase.
+
+## 6. Burn-rate rules / 消耗速度規則
+
+If projected exhaustion is at or after scheduled reset, do not create artificial scarcity.
+
+If projected exhaustion is before reset:
+- show sustainable burn rate;
+- show required reduction;
+- protect allowance for high-value/high-risk work;
+- recommend postponing low-value batch work before compromising important work.
+
+Do not calculate a precise forecast without defensible timestamps.
+
+## 7. Confidence / 信心程度
+
+- **High:** authenticated allowance, timestamps, reset facts, and task context are available.
+- **Medium:** account state is known but one planning input is inferred or missing.
+- **Low:** key account or task facts are missing. Give conservative guidance and do not fabricate precision.
+
+Authenticated account data overrides third-party reset intelligence when they conflict.
+
+## 8. Governing principle / 治理原則
+
+**Lowest sufficient intelligence, highest necessary assurance. / 使用足以完成工作的最低合理智慧，保留必要的最高可靠性。**
+
+Optimize scope before sacrificing correctness. Never trade safety, security, data integrity, required verification, or material decision quality for credit savings.
