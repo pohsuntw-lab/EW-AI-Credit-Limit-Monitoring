@@ -1,25 +1,25 @@
 {
   "name": "ew-ai-credit-limit-monitor",
-  "version": "0.1.1+codex.20260916081631",
-  "description": "Read Codex and Work allowance, compare reset intelligence, and recommend the best next action. / \u8b80\u53d6 Codex \u8207\u5de5\u4f5c\u6a21\u5f0f\u984d\u5ea6\u3001\u6bd4\u5c0d\u91cd\u7f6e\u60c5\u5831\u4e26\u63d0\u4f9b\u6700\u4f73\u5efa\u8b70\u3002",
+  "version": "0.2.0",
+  "description": "Govern Codex and Work AI resources using allowance, reset timing, task value, risk, and urgency. / 依額度、重置時間、任務價值、風險與緊急度治理 Codex 與工作模式 AI 資源。",
   "author": {
     "name": "Embodied Worker Co., Ltd."
   },
   "skills": "./skills/",
   "interface": {
-    "displayName": "EW AI Credit Limit Monitor / EW AI \u984d\u5ea6\u76e3\u63a7",
-    "shortDescription": "Chart-first allowance forecasts and reset advice. / \u5716\u8868\u512a\u5148\u7684\u984d\u5ea6\u9810\u6e2c\u8207\u91cd\u7f6e\u5efa\u8b70\u3002",
-    "longDescription": "Opens the authenticated Codex Usage page in Work mode, reads allowance and reset facts, checks official OpenAI guidance and codex-resets.com, then presents a concise bilingual dashboard led by native charts and one clear recommendation. It never applies a reset or purchases credits. / \u5728\u5de5\u4f5c\u6a21\u5f0f\u958b\u555f\u5df2\u767b\u5165\u7684 Codex \u7528\u91cf\u5f8c\u53f0\uff0c\u8b80\u53d6\u984d\u5ea6\u8207\u91cd\u7f6e\u4e8b\u5be6\uff0c\u6838\u5c0d OpenAI \u5b98\u65b9\u898f\u5247\u53ca codex-resets.com\uff0c\u4ee5\u539f\u751f\u5716\u8868\u70ba\u4e3b\u8f38\u51fa\u7cbe\u7c21\u96d9\u8a9e\u5100\u8868\u677f\u8207\u55ae\u4e00\u660e\u78ba\u5efa\u8b70\uff1b\u4e0d\u6703\u57f7\u884c\u91cd\u7f6e\u6216\u8cfc\u8cb7\u9ede\u6578\u3002",
-    "developerName": "Embodied Worker Co., Ltd. / \u5177\u8c61\u8077\u4eba\u80a1\u4efd\u6709\u9650\u516c\u53f8",
+    "displayName": "EW AI Resource Governor / 具象 AI 資源治理",
+    "shortDescription": "Allowance-aware AI workload and credit governance. / 感知額度的 AI 工作負載與點數治理。",
+    "longDescription": "Reads authenticated Codex and Work allowance facts, checks reset intelligence, forecasts burn rate, then evaluates task value, risk, urgency, and failure history to recommend an economical AI resource policy: proceed normally, conserve resources, defer non-urgent work, or permit deeper reasoning for critical work. It complements OpenAI model routing rather than replacing it, and never changes models, applies resets, or purchases credits without supported platform controls and explicit user action. / 讀取已登入的 Codex 與工作模式額度、核對重置情報並預測消耗，再依任務價值、風險、緊急度與失敗紀錄提出 AI 資源策略：正常執行、節省資源、延後非緊急工作，或允許關鍵工作使用更深推理。它補充而非取代 OpenAI 的模型調度，且不會在缺乏平台控制能力與使用者明確操作下自行切換模型、執行重置或購買點數。",
+    "developerName": "Embodied Worker Co., Ltd. / 具象職人股份有限公司",
     "category": "Productivity",
     "capabilities": [
       "Interactive",
       "Read"
     ],
     "defaultPrompt": [
-      "Check my Codex allowance and advise me. / \u6aa2\u67e5\u6211\u7684 Codex \u984d\u5ea6\u4e26\u63d0\u4f9b\u5efa\u8b70\u3002",
-      "Forecast when my allowance runs out. / \u9810\u6e2c\u6211\u7684\u984d\u5ea6\u4f55\u6642\u7528\u5b8c\u3002",
-      "Compare usage with the latest reset news. / \u6bd4\u5c0d\u7528\u91cf\u8207\u6700\u65b0\u91cd\u7f6e\u60c5\u5831\u3002"
+      "Optimize my AI resource use for this task. / 幫我最佳化這項工作的 AI 資源使用。",
+      "Check my allowance and tell me whether this work should run now or wait. / 檢查我的額度，判斷這項工作應該現在執行還是延後。",
+      "Forecast my allowance and recommend a cost-aware work strategy. / 預測我的額度並建議成本感知的工作策略。"
     ],
     "brandColor": "#B76E79",
     "composerIcon": "./assets/rose-gold-elephant-icon.png",
