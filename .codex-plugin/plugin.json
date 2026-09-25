@@ -1,5 +1,5 @@
 {
-  "name": "ew-ai-resource-governor",
+  "name": "ew-ai-credit-limit-monitor",
   "version": "0.2.0",
   "description": "Govern Codex and Work AI resources using business policy, allowance, task value, risk, urgency, difficulty, and failure history. / 依企業政策、額度、任務價值、風險、緊急度、難度與失敗紀錄治理 Codex 與工作模式 AI 資源。",
   "author": {
