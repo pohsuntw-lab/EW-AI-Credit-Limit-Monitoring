@@ -22,8 +22,8 @@ EW AI 資源治理是一款唯讀建議型外掛。它只會在使用者明確�
 
 ## Contact / 聯絡方式
 
-For privacy questions, open an issue in this repository without including private account or billing information.
+For privacy questions, email pohsun@embodiedworker.com or open an issue in this repository without including private account or billing information. Website: https://www.embodiedworker.com
 
-如有隱私問題，請在本儲存庫提出 Issue，且不要附上私人帳戶或帳務資訊。
+如有隱私問題，請寄信至 pohsun@embodiedworker.com，或在本儲存庫提出 Issue；請勿附上私人帳戶或帳務資訊。網站：https://www.embodiedworker.com
 
 © 2026 Embodied Worker Co., Ltd. / 具象職人股份有限公司. All rights reserved.
