@@ -32,8 +32,8 @@ Do not use the plugin to access another person's account, evade service limits, 
 
 ## Support / 支援
 
-For support, open an issue in this repository and omit passwords, tokens, payment information, or other sensitive data.
+For support, email pohsun@embodiedworker.com or open an issue in this repository. Omit passwords, tokens, payment information, and other sensitive data. Website: https://www.embodiedworker.com
 
-如需支援，請在本儲存庫提出 Issue，並省略密碼、權杖、付款資訊或其他敏感資料。
+如需支援，請寄信至 pohsun@embodiedworker.com，或在本儲存庫提出 Issue；請勿提供密碼、權杖、付款資訊或其他敏感資料。網站：https://www.embodiedworker.com
 
 © 2026 Embodied Worker Co., Ltd. / 具象職人股份有限公司. All rights reserved.
