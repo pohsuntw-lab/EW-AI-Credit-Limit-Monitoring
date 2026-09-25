@@ -1,5 +1,5 @@
 ---
-name: ew-ai-credit-limit-monitor
+name: ew-ai-resource-governor
 description: Govern AI resource use from authenticated Codex and Work allowance, reset timing, task value, risk, urgency, and failure history. Use for allowance checks, burn forecasts, reset intelligence, credits, and cost-aware decisions about whether work should proceed normally, conserve resources, defer, or justify deeper reasoning. This skill advises only; it does not claim model-switching powers the platform has not exposed.
 ---
 
@@ -11,7 +11,7 @@ Produce a read-only, chart-first resource-governance dashboard. English always p
 
 When the user provides a task or workload, evaluate it against current allowance facts before recommending AI resource use. Do not duplicate OpenAI's internal model routing. Govern whether the task deserves more or fewer AI resources.
 
-Classify the workload using four factors: task value, technical/operational risk, urgency, and recent failure history. Combine these with allowance remaining and time until reset.
+Classify the workload using task value, technical or operational risk, urgency, difficulty, and recent failure history. Combine these with allowance remaining and time until reset.
 
 Return one policy:
 
@@ -57,7 +57,7 @@ Read [references/official-sources.md](references/official-sources.md) before cla
 1. Check OpenAI's official Help Center and ChatGPT Release Notes for the governing rules and confirmed promotions.
 2. Check `https://codex-resets.com/` for the latest announcement and reset history.
 3. Label codex-resets.com as third-party reset intelligence. Do not present it as an OpenAI policy source.
-4. Distinguish normal scheduled reset, automatic/global reset, banked reset, purchased instant reset, and credits.
+4. Distinguish normal scheduled reset, automatic or global reset, banked reset, purchased instant reset, and credits.
 5. If a third-party announcement has no official or account-level confirmation, label it `THIRD-PARTY SIGNAL — UNVERIFIED / 第三方線索—尚未獲官方確認`. Never recommend a consequential action from that signal alone.
 
 ## Calculate the forecast

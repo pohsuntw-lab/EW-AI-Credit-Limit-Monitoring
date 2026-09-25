@@ -18,8 +18,8 @@ Use this source for the user's actual eligibility and timing. General announceme
 
 Use these OpenAI-controlled sources for rules and confirmed announcements:
 
-- `https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work`
-- `https://help.openai.com/en/articles/20001516-managing-usage-with-gpt-6-astra-in-work-and-codex`
+- `https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan`
+- `https://help.openai.com/en/articles/20001271-codex-referral-promotions`
 - `https://help.openai.com/en/articles/6825453-chatgpt-release-notes`
 
 An official article may be updated after an event. Report its visible update date when relevant.
