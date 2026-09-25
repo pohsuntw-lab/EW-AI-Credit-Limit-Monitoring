@@ -1,11 +1,28 @@
 ---
 name: ew-ai-credit-limit-monitor
-description: Read a user's authenticated Codex and Work usage in Work mode, check current reset intelligence, forecast exhaustion, and provide a bilingual visual recommendation. Use when the user asks about Codex allowance, Work usage, weekly or five-hour limits, credits, reset timing, banked resets, or whether to wait, reset, or buy credits. This skill is read-only and never applies a reset or makes a purchase.
+description: Govern AI resource use from authenticated Codex and Work allowance, reset timing, task value, risk, urgency, and failure history. Use for allowance checks, burn forecasts, reset intelligence, credits, and cost-aware decisions about whether work should proceed normally, conserve resources, defer, or justify deeper reasoning. This skill advises only; it does not claim model-switching powers the platform has not exposed.
 ---
 
-# EW AI Credit Limit Monitor / EW AI 額度監控
+# EW AI Resource Governor / 具象 AI 資源治理
 
-Produce a read-only, chart-first decision dashboard. English always precedes Traditional Chinese in titles, labels, explanations, and recommendations.
+Produce a read-only, chart-first resource-governance dashboard. English always precedes Traditional Chinese in titles, labels, explanations, and recommendations.
+
+## Resource governance
+
+When the user provides a task or workload, evaluate it against current allowance facts before recommending AI resource use. Do not duplicate OpenAI's internal model routing. Govern whether the task deserves more or fewer AI resources.
+
+Classify the workload using four factors: task value, technical/operational risk, urgency, and recent failure history. Combine these with allowance remaining and time until reset.
+
+Return one policy:
+
+- `PROCEED / 正常執行` — adequate allowance and ordinary workload.
+- `CONSERVE / 節省資源` — use compact context, narrow scope, avoid unnecessary parallel agents and excessive reasoning.
+- `DEFER / 延後` — non-urgent, low-value, high-consumption work is better postponed until reset.
+- `DEEP REASONING JUSTIFIED / 可使用深度推理` — high-risk or high-value work justifies additional reasoning even when allowance is constrained.
+
+Never reduce safety, data integrity, correctness, or required verification merely to save credits. Never claim that a specific model was automatically selected or switched unless the active platform explicitly exposes and confirms that control.
+
+For coding work, prefer scope control before model escalation: narrow the affected modules, reuse known context, avoid repeated repository-wide scans, stop when acceptance criteria are met, and escalate reasoning only after evidence shows the current approach is insufficient.
 
 ## Entry condition
 
