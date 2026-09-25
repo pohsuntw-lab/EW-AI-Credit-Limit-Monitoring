@@ -1,5 +1,5 @@
 ---
-name: ew-ai-credit-limit-monitor
+name: ew-ai-resource-governor
 description: Govern AI resource use from business policy, authenticated Codex and Work allowance, task value, risk, urgency, difficulty, and failure history. Use for allowance checks, burn forecasts, credits, and cost-aware decisions about whether work should proceed normally, conserve resources, defer, or justify deeper reasoning. This skill advises only; it does not predict resets or claim model-switching powers the platform has not exposed.
 ---
 

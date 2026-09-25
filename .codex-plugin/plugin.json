@@ -1,5 +1,5 @@
 {
-  "name": "ew-ai-credit-limit-monitor",
+  "name": "ew-ai-resource-governor",
   "version": "0.2.0",
   "description": "Govern AI resources by business policy, allowance, task value, risk, urgency, and failure history. / 依企業政策、額度、價值、風險、緊急度與失敗紀錄治理 AI 資源。",
   "author": {
