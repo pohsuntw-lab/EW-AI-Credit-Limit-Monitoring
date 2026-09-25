@@ -1,0 +1,39 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ew-ai-resource-governor",
+  "version": "0.2.0",
+  "description": "Govern AI resources by business policy, allowance, task value, risk, urgency, and failure history.",
+  "author": {
+    "name": "Embodied Worker Co., Ltd."
+  },
+  "repository": "https://github.com/pohsuntw-lab/EW-AI-Credit-Limit-Monitoring",
+  "keywords": [
+    "ai-governance",
+    "resource-allocation",
+    "credit-optimization",
+    "workload-policy"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "EW AI Resource Governor / 具象 AI 資源治理",
+        "shortDescription": "Business-policy AI workload and credit governance. / 企業政策導向的 AI 工作負載與額度治理。",
+        "longDescription": "Reads authenticated allowance facts and evaluates business policy, task value, risk, urgency, difficulty, and failure history. Recommends PROCEED, CONSERVE, DEFER, or DEEP REASONING JUSTIFIED. It advises only and never switches models, applies resets, or buys credits. / 讀取帳戶額度，依企業政策、任務價值、風險、緊急度、難度與失敗紀錄，建議正常執行、節省資源、延後或使用深度推理；僅提供建議，不切換模型、不執行重置、不購買點數。",
+        "developerName": "Embodied Worker Co., Ltd. / 具象職人股份有限公司",
+        "category": "Productivity",
+        "capabilities": [
+          "Interactive",
+          "Read"
+        ],
+        "defaultPrompt": [
+          "Optimize my AI resource use for this task. / 幫我最佳化這項工作的 AI 資源使用。",
+          "Decide how much AI resource this work deserves. / 判斷這項工作值得多少 AI 資源。",
+          "Classify this task and recommend a work policy. / 為這項任務分級並建議工作策略。"
+        ],
+        "brandColor": "#B76E79",
+        "composerIcon": "./assets/rose-gold-elephant-icon.png",
+        "logo": "./assets/rose-gold-elephant-logo.png"
+      }
+    }
+  }
+}
