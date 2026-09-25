@@ -1,15 +1,15 @@
 {
   "name": "ew-ai-resource-governor",
   "version": "0.2.0",
-  "description": "Govern Codex and Work AI resources using allowance, reset timing, task value, risk, urgency, and failure history. / 依額度、重置時間、任務價值、風險、緊急度與失敗紀錄治理 Codex 與工作模式 AI 資源。",
+  "description": "Govern Codex and Work AI resources using business policy, allowance, task value, risk, urgency, difficulty, and failure history. / 依企業政策、額度、任務價值、風險、緊急度、難度與失敗紀錄治理 Codex 與工作模式 AI 資源。",
   "author": {
     "name": "Embodied Worker Co., Ltd. / 具象職人股份有限公司"
   },
   "skills": "./skills/",
   "interface": {
     "displayName": "EW AI Resource Governor / 具象 AI 資源治理",
-    "shortDescription": "Allowance-aware AI workload and credit governance. / 感知額度的 AI 工作負載與點數治理。",
-    "longDescription": "Reads authenticated Codex and Work allowance facts, checks reset intelligence, forecasts burn rate, then evaluates task value, risk, urgency, and failure history to recommend an economical AI resource policy: proceed normally, conserve resources, defer non-urgent work, or permit deeper reasoning for critical work. It complements OpenAI model routing rather than replacing it, and never changes models, applies resets, or purchases credits without supported platform controls and explicit user action. / 讀取已登入的 Codex 與工作模式額度、核對重置情報並預測消耗，再依任務價值、風險、緊急度與失敗紀錄提出 AI 資源策略：正常執行、節省資源、延後非緊急工作，或允許關鍵工作使用更深推理。它補充而非取代 OpenAI 的模型調度，且不會在缺乏平台控制能力與使用者明確操作下自行切換模型、執行重置或購買點數。",
+    "shortDescription": "Business-policy AI workload and credit governance. / 企業政策導向的 AI 工作負載與額度治理。",
+    "longDescription": "Reads authenticated Codex and Work allowance facts, then evaluates business policy, task value, risk, urgency, difficulty, and failure history to recommend an economical AI resource policy: proceed normally, conserve resources, defer non-urgent work, or justify deeper reasoning for critical work. It governs whether a task deserves more AI resources; it does not duplicate OpenAI model routing, predict reset events, automatically switch models, apply resets, or purchase credits. / 讀取已登入的 Codex 與工作模式額度，再依企業政策、任務價值、風險、緊急度、難度與失敗紀錄提出 AI 資源策略：正常執行、節省資源、延後非緊急工作，或允許關鍵工作使用更深推理。它治理的是工作是否值得投入更多 AI 資源；不重複 OpenAI 的模型調度、不預測重置事件，也不會自動切換模型、執行重置或購買點數。",
     "developerName": "Embodied Worker Co., Ltd. / 具象職人股份有限公司",
     "category": "Productivity",
     "capabilities": [
@@ -18,8 +18,8 @@
     ],
     "defaultPrompt": [
       "Optimize my AI resource use for this task. / 幫我最佳化這項工作的 AI 資源使用。",
-      "Check my allowance and tell me whether this work should run now or wait. / 檢查我的額度，判斷這項工作應該現在執行還是延後。",
-      "Forecast my allowance and recommend a cost-aware work strategy. / 預測我的額度並建議成本感知的工作策略。"
+      "Check my allowance and decide how much AI resource this work deserves. / 檢查我的額度，判斷這項工作值得投入多少 AI 資源。",
+      "Classify this task and recommend a cost-aware work strategy. / 為這項任務分級並建議成本感知的工作策略。"
     ],
     "brandColor": "#B76E79",
     "composerIcon": "./assets/rose-gold-elephant-icon.png",
