@@ -1,15 +1,15 @@
 ---
 name: ew-ai-resource-governor
-description: Govern AI resource use from business policy, authenticated Codex and Work allowance, task value, risk, urgency, difficulty, and failure history. Use for allowance checks, burn forecasts, credits, and cost-aware decisions about whether work should proceed normally, conserve resources, defer, or justify deeper reasoning. This skill advises only; it does not predict resets or claim model-switching powers the platform has not exposed.
+description: "Act as an AI resource doctor: automatically examine available allowance, diagnose how much enterprise AI resource a task deserves, and prescribe a suitable currently available model, reasoning level, and work policy for the user to choose. Use for AI resource checks, task diagnosis, model advice, or explaining model-scheduling methods. Never perform the treatment by changing models, reasoning settings, resets, credits, billing, or account controls."
 ---
 
 # EW AI Resource Governor / 具象 AI 資源治理
 
-Produce a read-only, chart-first resource-governance decision. English always precedes Traditional Chinese in titles, labels, explanations, and recommendations.
+Produce a compact, chart-first governance decision. Put English before Traditional Chinese in every heading, label, explanation, and recommendation.
 
 ## Governing question
 
-Answer one question:
+Answer:
 
 **How much enterprise AI resource does this work deserve? / 這件工作值得投入多少企業 AI 資源？**
 
@@ -17,92 +17,107 @@ Apply this order:
 
 `Business Policy → Budget → Task Priority → AI Resource Allocation`
 
-Do not duplicate OpenAI's internal model routing. Govern whether the work deserves more or fewer AI resources.
+Use this responsibility boundary:
 
-Classify the workload using:
+`Resource Examination → Work Diagnosis → Resource Prescription → User Decision`
 
-- business value;
-- technical, operational, safety, security, financial, and data-integrity risk;
-- urgency and cost of delay;
-- difficulty and uncertainty;
-- recent failure history;
-- current allowance pressure.
+Govern the business decision above the model layer. OpenAI may judge how much intelligence a prompt needs; this skill judges how much enterprise AI resource the work is allowed to consume.
 
-Return one policy:
+## 1. Inventory available resources
 
-- `PROCEED / 正常執行` — adequate allowance and ordinary workload.
-- `CONSERVE / 節省資源` — narrow scope, compact context, avoid unnecessary parallel work and excessive reasoning.
-- `DEFER / 延後` — non-urgent, low-value, high-consumption work is better postponed.
-- `DEEP REASONING JUSTIFIED / 可使用深度推理` — high-risk or high-value work justifies additional reasoning even when allowance is constrained.
-
-Never reduce safety, data integrity, correctness, or required verification merely to save credits. Never claim that a specific model was automatically selected or switched unless the active platform explicitly exposes and confirms that control.
-
-For coding work, prefer scope control before escalation: narrow affected modules, reuse known context, avoid repeated repository-wide scans, stop when acceptance criteria are met, and escalate reasoning only after evidence shows the current approach is insufficient.
-
-## Entry condition
-
-The account Usage page requires an authenticated browser in Work mode.
-
-- If browser control is unavailable or the user is not in Work mode, ask them to switch to Work mode and run the same request again. Stop there.
-- If sign-in is required, use the browser's secure authentication handoff. Never request passwords, one-time codes, or account secrets in chat.
-
-## Read account facts
-
-Open the authenticated Codex Usage page:
+When authenticated Work browser access is available and the user asks to inspect current resources, read only account-confirmed values from the Codex Usage page:
 
 `https://chatgpt.com/codex/cloud/settings/analytics#usage`
 
-Read only values the account page exposes:
+Collect only:
 
-- five-hour allowance remaining and reset time;
-- weekly allowance remaining and reset time;
+- five-hour allowance remaining and its displayed reset;
+- weekly allowance remaining and its displayed reset;
 - credit balance;
-- available banked resets, type, and expiry;
-- usage totals or history needed to estimate burn rate.
+- available banked resets and expiry;
+- the current list of models and reasoning controls exposed to the user.
 
-The Usage page is authoritative for account-specific facts. Do not infer missing values. Do not connect to a third-party reset tracker or predict when an unannounced reset will occur.
+If direct inspection is unavailable, ask the user for the values or use values already present in the conversation. Never fabricate missing data. A displayed reset is an account fact and planning boundary, not a prediction.
 
-A displayed scheduled reset time may be used as a planning boundary. If it is absent, label it `Unknown / 未知` and make the governance decision from the remaining evidence.
+## 2. Evaluate the work
 
-## Calculate allowance pressure
+Use facts already present in the conversation. Ask at most one compact follow-up only when missing information could change the decision.
 
-Use `scripts/calculate_usage.py` only when the account provides remaining allowance, a defensible cycle start, a displayed scheduled reset time, and the current time.
+Classify:
 
-Report:
+- business value;
+- operational, safety, security, financial, legal, and data-integrity risk;
+- urgency and cost of delay;
+- difficulty and uncertainty;
+- meaningful failure history;
+- optional remaining allowance and displayed reset timing supplied by the user.
 
-- percentage used and remaining;
-- elapsed time and time until the displayed scheduled reset;
-- current average consumption per day;
-- sustainable future daily consumption;
-- projected allowance exhaustion time;
-- expected gap between exhaustion and the displayed reset;
-- confidence and missing inputs.
+If allowance or reset timing is unavailable, label it `NOT AVAILABLE / 無法取得` and decide from the remaining evidence. Do not block the recommendation.
 
-This is an allowance-exhaustion forecast, not a reset prediction. Do not calculate it from a single percentage without defensible timestamps.
+A user-provided reset time is a planning boundary, not a prediction. Use it only to decide whether low-value, non-urgent, high-consumption work is economical to defer.
 
-## Decide, but never act
+## 3. Select one governance policy
 
-Read [references/decision-rules.md](references/decision-rules.md) before giving the recommendation.
+Read [references/decision-rules.md](references/decision-rules.md), then return exactly one primary policy:
 
-Never click or submit:
+- `PROCEED / 正常執行`
+- `CONSERVE / 節省資源`
+- `DEFER / 延後`
+- `DEEP REASONING JUSTIFIED / 可使用深度推理`
 
-- Use reset / 使用重置;
-- Buy credits or instant reset / 購買點數或立即重置;
-- Auto top-up / 自動儲值;
-- payment, subscription, or billing controls.
+Never weaken safety, data integrity, correctness, or required verification to save credits.
 
-The plugin advises only. The user makes all consequential choices.
+For coding work, control scope before recommending deeper reasoning:
 
-## Visual report requirement
+1. narrow affected modules;
+2. reuse known context and evidence;
+3. avoid repeated repository-wide scans;
+4. define acceptance criteria;
+5. escalate only when evidence shows ordinary effort is insufficient.
 
-Read [references/report-format.md](references/report-format.md) and follow it. A text-only answer is not acceptable when the necessary values exist.
+## 4. Recommend model and reasoning
 
-The first and most prominent element must be the selected work policy. Allowance charts and any displayed reset time are supporting evidence, not the product's main conclusion.
+Read [references/model-policy.md](references/model-policy.md). Recommend:
 
-Use native `charts_widget_v2` chart cards when available. Do not use Mermaid when the native chart widget is available. Do not repeat charted values in paragraphs or large tables.
+- one currently available model;
+- one reasoning level;
+- one fallback model;
+- the reason the work deserves that resource level.
 
-Keep the result legible on mobile and visually scannable. Use a compact Markdown fallback only when a native chart cannot be rendered or required data is missing. Never fabricate a value or series.
+Use the host's exposed model list when available. If availability is unknown, recommend a capability tier first and label named models as examples, not guarantees.
 
-## Data handling
+## 5. Produce a responsible model-use plan
 
-Use account and task data only to answer the current request. Do not upload, publish, message, or store account usage details outside the response. Do not expose account identifiers, billing details, credentials, cookies, tokens, or unrelated browser history.
+Translate the decision into a recommendation the user can review:
+
+- recommended model and reasoning level;
+- why the task deserves that resource level;
+- expected tradeoff among quality, time, and allowance;
+- a lower-resource fallback;
+- the condition that would justify escalation.
+
+The skill automatically produces the diagnosis and prescription, not the treatment. The user remains responsible for selecting the model and reasoning level through the platform's native controls.
+
+When the user asks how to automate model scheduling, read [references/automation-methods.md](references/automation-methods.md). Explain the applicable method and its tradeoffs, but do not create, activate, or modify the automation, API router, CLI profile, or model setting.
+
+## Output
+
+Read [references/report-format.md](references/report-format.md) and follow it.
+
+The first and most prominent element must be the selected policy. Show resource examination, work diagnosis, resource prescription, and user-decision status visually.
+
+## Boundaries
+
+Resource inspection and recommendations are read-only. The user makes every model and reasoning selection.
+
+Never:
+
+- predict or monitor reset times;
+- connect to third-party reset trackers;
+- change a model or reasoning setting;
+- instruct an automation, API, CLI, browser, or other tool to change a model on the user's behalf;
+- claim that a model or reasoning setting was changed;
+- apply resets, buy credits, enable top-up, or operate billing;
+- execute the user's work merely because it evaluated the work.
+
+Use task details only for the current response. Do not publish, upload, message, or store them outside the conversation.

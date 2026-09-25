@@ -2,15 +2,16 @@
 
 Effective date: September 25, 2026 / 生效日期：2026 年 9 月 25 日
 
-EW AI Resource Governor is a read-only advisory plugin. It reads usage information only when the user explicitly asks ChatGPT Work to inspect it, and combines those account facts with task context supplied in the current conversation to recommend an AI resource policy.
+EW AI Resource Governor is a lightweight, read-only advisory plugin. When the user explicitly asks to inspect current resources, it may read account-confirmed allowance and displayed reset information through the authenticated ChatGPT Work session. It combines those facts with task context to recommend an AI resource policy, model, and reasoning level.
 
-EW AI 資源治理是一款唯讀建議型外掛。它只會在使用者明確要求時讀取 ChatGPT 工作模式中的用量資訊，並結合目前對話中由使用者提供的任務情境，提出 AI 資源使用策略。
+EW AI 資源治理是一款輕量、唯讀的建議型外掛。使用者明確要求盤點資源時，它可透過已登入的 ChatGPT 工作模式讀取帳戶確認的額度與顯示重置資訊，再結合任務情境提出 AI 資源策略、模型與推理強度建議。
 
 ## Data handling / 資料處理
 
 - The plugin does not ask for or collect passwords, authentication codes, payment-card details, cookies, or access tokens.
 - It does not sell account data or use it for advertising.
 - It does not upload or publish account usage details to third parties.
+- It never changes the user's model, reasoning setting, resets, credits, subscription, or billing controls.
 - Task classifications and recommendations are produced for the current conversation and are not used to operate billing or account controls.
 - OpenAI processes conversation and account data under its own applicable terms and privacy policies.
 

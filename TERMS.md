@@ -2,21 +2,21 @@
 
 Effective date: September 25, 2026 / 生效日期：2026 年 9 月 25 日
 
-By using EW AI Resource Governor, you agree that it provides informational estimates, workload classifications, and resource-governance recommendations only. The authenticated account page remains authoritative for allowance and displayed reset information.
+By using EW AI Resource Governor, you agree that it provides workload classifications and resource-governance, model, and reasoning-level recommendations only. Allowance and displayed reset information may come from the authenticated account page when the user explicitly requests inspection.
 
-使用 EW AI 資源治理，即表示你同意本外掛僅提供資訊性估算、工作分級與資源治理建議；已登入的帳戶頁面仍是額度與所顯示重置資訊的權威依據。
+使用 EW AI 資源治理，即表示你同意本外掛僅提供工作分級、資源治理、模型與推理強度建議；使用者明確要求盤點時，額度與顯示重置資訊可來自已登入的帳戶頁面。
 
 ## Read-only service / 唯讀服務
 
-The plugin does not apply resets, purchase credits, enable auto top-up, change subscriptions, operate billing controls, predict unannounced resets, or automatically switch models. Users must make consequential account, payment, and model-use decisions themselves.
+The plugin does not predict reset times, apply resets, purchase credits, enable auto top-up, change subscriptions, operate billing controls, or change models and reasoning settings. An account-displayed reset time may be used only as a planning boundary. Users make every model selection and consequential decision themselves.
 
-本外掛不會執行重置、購買點數、啟用自動儲值、變更訂閱、操作帳務控制項、預測未公告的重置或自動切換模型。涉及帳戶、付款與模型使用的重要決定必須由使用者自行作出。
+本外掛不預測重置時間，不執行重置、不購買點數、不啟用自動儲值、不變更訂閱、不操作帳務，也不變更模型或推理設定。帳戶顯示的重置時間僅作排程邊界；每次模型選擇與所有重要決定均由使用者自行作出。
 
 ## Accuracy and availability / 準確性與可用性
 
-Forecasts and governance recommendations depend on the data visible at the time of the request and may be incomplete. Allowances and product behavior can change.
+Governance recommendations depend on the task details and optional allowance information supplied at the time of the request and may be incomplete.
 
-預測與治理建議取決於請求當下可見的資料，可能不完整。額度與產品行為可能變更。
+治理建議取決於請求當下提供的任務資訊與選填額度資料，可能不完整。
 
 ## Human decision boundary / 人工決策邊界
 

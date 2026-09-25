@@ -1,69 +1,85 @@
 # Chart-First Report Format / 圖表優先報告格式
 
-English must appear before Traditional Chinese throughout the report.
+Put English before Traditional Chinese throughout. Keep the complete result compact and mobile-friendly.
 
-The successful report is a compact governance decision, not a reset bulletin and not an essay.
+## 1. Mandatory opening / 必要開頭
 
-## Mandatory opening
+Begin with exactly one selected policy:
 
-Begin with the selected policy:
-
-```markdown
+~~~markdown
 ## WORK POLICY / 工作策略
 
 # 🟣 CONSERVE / 節省資源
-```
+~~~
 
-Do not place a reset heading or generic report title above the policy.
+Do not place a generic report title above the policy.
 
-## Decision line
+## 2. Resource examination / 資源檢查
 
-Immediately below the policy, show one compact line:
+Show five-hour and weekly allowance, credits, banked resets, and account-displayed reset times when available. Use one compact allowance chart when numeric values exist.
 
-```markdown
-**VALUE / 價值:** HIGH · **RISK / 風險:** MEDIUM · **URGENCY / 緊急度:** LOW · **BUDGET / 預算:** CONSTRAINED
-```
+## 3. Work diagnosis / 工作診斷
 
-When the task is coding work, add at most one execution instruction:
+Show the factors in one compact table:
 
-`Narrow scope → relevant modules only → normal reasoning → escalate after evidence / 縮小範圍 → 僅讀相關模組 → 一般推理 → 有證據才升級`
+~~~markdown
+| FACTOR / 因素 | LEVEL / 等級 | WHY / 理由 |
+|---|---:|---|
+| VALUE / 價值 | HIGH / 高 | ... |
+| RISK / 風險 | MEDIUM / 中 | ... |
+| URGENCY / 急迫性 | LOW / 低 | ... |
+| DIFFICULTY / 難度 | MEDIUM / 中 | ... |
+| FAILURES / 失敗 | 0 | ... |
+| ALLOWANCE / 額度 | 18% remaining / 剩餘 18% | Account-confirmed or user-supplied / 帳戶確認或使用者提供 |
+| RESET / 重置 | 14h displayed / 顯示 14 小時 | Planning boundary only / 僅作排程邊界 |
+~~~
 
-## Allowance context
+Use only known facts. Replace unavailable values with `NOT AVAILABLE / 無法取得`. Never invent an allowance percentage or reset time.
 
-Show only account-confirmed values:
+When a native chart widget is available, add one compact horizontal bar chart for Value, Risk, Urgency, and Difficulty using LOW=1, MEDIUM=2, HIGH=3. Label the numeric mapping clearly. Do not chart Failure count or missing allowance. If a native chart is unavailable, the table is the visual fallback.
 
-```markdown
-**WEEKLY / 每週:** 18% remaining / 剩餘 18% · **5-HOUR / 五小時:** Not exposed / 未顯示 · **DISPLAYED RESET / 帳號顯示重置:** 14h
-```
+## 4. Resource prescription / 資源處方
 
-Use `Unknown / 未知` or `Not exposed / 未顯示` when appropriate. Never predict an undisclosed reset or cite a third-party reset tracker.
+Give one direct line:
 
-## Allowance chart
+Narrow scope → relevant modules only → ordinary reasoning → escalate after evidence / 縮小範圍 → 僅處理相關模組 → 一般推理 → 有證據才升級
 
-When values exist, render one native `charts_widget_v2` pie chart for weekly remaining versus used allowance. Do not repeat those percentages in a table.
+Adapt it to the selected policy.
 
-```text
-genui{"charts_widget_v2":{"content":{"chartType":"pie","meta":{"title":"Weekly allowance / 每週額度","description":"18% remaining; 82% used. / 剩餘18%，已使用82%。","footer":"Account confirmed / 帳號確認"},"nameKey":"status","valueKey":"percentage","series":[{"dataKey":"percentage","label":"Allowance / 額度","valueFormat":"raw","valueSuffix":"%"}],"data":[{"status":"Remaining / 剩餘","percentage":18},{"status":"Used / 已使用","percentage":82}]}}}
-```
+## 5. Model recommendation / 模型建議
 
-Replace examples with account facts. The two values must total 100.
+Show one recommendation card:
 
-## Burn chart
+~~~markdown
+| RECOMMENDATION / 建議 | SELECTION / 選擇 |
+|---|---|
+| MODEL / 模型 | GPT-6 Sol |
+| REASONING / 推理強度 | MEDIUM / 中 |
+| FALLBACK / 備選 | GPT-5.6 Terra |
+| TRADEOFF / 取捨 | Balanced quality and allowance / 平衡品質與額度 |
+| STATUS / 狀態 | USER DECISION REQUIRED / 需使用者決定 |
+~~~
 
-Render a current-versus-sustainable daily burn bar chart only when the cycle start and displayed reset time are defensible. Its footer may state projected allowance exhaustion and the gap before the displayed reset. This is an allowance forecast, not a reset prediction.
+The names above are an example format. Replace them with models currently available to the user. This is a recommendation, not an executed change.
 
-Do not render the chart when required timestamps are missing. Show one short missing-data notice instead.
+## 6. User decision / 使用者決定
 
-## Recommendation
+Give one action sentence followed by no more than three reasons:
 
-Give one sentence stating the best action, followed by no more than three compact reasons. End with:
+- why the selected policy fits;
+- what would justify escalation or de-escalation;
+- what evidence is missing, if material.
 
-`No action was executed / 未執行任何操作`
+End with:
 
-## Density limits
+User decision required; no model or account setting was changed / 需使用者決定；未變更模型或帳戶設定
 
-- Use no more than two chart cards.
-- Do not use Mermaid when `charts_widget_v2` is available.
-- Do not repeat a number already visible in a chart unless it is a decision threshold.
-- Do not add an executive summary, methodology section, reset-news section, source-comparison section, or model-routing essay.
-- Keep the complete result understandable on one mobile screen plus chart scrolling.
+## 7. Prohibited sections / 禁止內容
+
+Do not add:
+
+- predicted or independently retrieved reset times;
+- burn-rate forecasts;
+- claims that a model or reasoning setting was changed;
+- instructions that secretly or automatically change the user's model;
+- long methodology, essays, or duplicated summaries.

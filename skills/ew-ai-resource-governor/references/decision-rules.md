@@ -1,126 +1,106 @@
 # Resource Governance Decision Rules / AI 資源治理決策規則
 
-Apply these rules in order. The goal is not to choose the smartest model; it is to decide how much enterprise AI resource a task deserves.
+Apply these rules before recommending a model. First decide how much enterprise AI resource a task deserves; then map that entitlement to a suitable current model and reasoning level.
 
-## 1. Apply business policy / 套用企業政策
+## 1. Business policy / 企業政策
 
-Identify any explicit policy first:
+Identify first:
 
-- protected work that must receive sufficient resources;
-- prohibited or restricted work;
-- approval requirements;
-- budget ceilings;
+- protected, prohibited, or restricted work;
+- approval requirements and budget ceilings;
 - deadlines and service obligations;
-- safety, security, privacy, legal, or data-integrity constraints.
+- safety, security, privacy, legal, and data-integrity constraints.
 
 Business policy overrides convenience and credit-saving preferences.
 
-## 2. Classify the workload / 工作分級
+## 2. Task profile / 任務輪廓
 
-Score qualitatively from LOW / MEDIUM / HIGH:
+Classify each factor as `LOW / 低`, `MEDIUM / 中`, or `HIGH / 高`:
 
-- **Value / 價值** — business or user value if completed now.
-- **Risk / 風險** — consequence of an incorrect result.
-- **Urgency / 緊急度** — cost of delay.
-- **Difficulty / 難度** — uncertainty, cross-module reasoning, debugging depth, or architectural complexity.
-- **Failure history / 失敗紀錄** — whether properly scoped ordinary attempts already failed.
+- **Value / 價值:** business value if completed.
+- **Risk / 風險:** consequence of an incorrect result or delay.
+- **Urgency / 急迫性:** cost of waiting.
+- **Difficulty / 難度:** uncertainty, cross-module reasoning, debugging depth, or architectural complexity.
+- **Failure history / 失敗紀錄:** zero, one, or two-plus properly scoped failed attempts.
 
 Do not equate long duration or a large repository with high reasoning difficulty.
 
-## 3. Read the budget state / 讀取預算狀態
+## 3. Budget context / 預算情境
 
-Use authenticated account facts when available.
+Use only an account-confirmed percentage or a percentage explicitly supplied by the user:
 
-Classify weekly remaining allowance:
+- **HEALTHY / 充足:** more than 50% remaining
+- **WATCH / 注意:** 25–50% remaining
+- **CONSTRAINED / 吃緊:** 10–24% remaining
+- **CRITICAL / 臨界:** less than 10% remaining
+- **NOT AVAILABLE / 無法取得:** no confirmed percentage available
 
-- **HEALTHY / 充足:** > 50%
-- **WATCH / 注意:** 25–50%
-- **CONSTRAINED / 吃緊:** 10–25%
-- **CRITICAL / 臨界:** < 10%
+These are product governance defaults, not platform limits.
 
-These are governance defaults, not OpenAI limits. If defensible usage data projects allowance exhaustion before the displayed scheduled reset, treat the state one level more conservatively.
+Use a reset time only when the user supplies it or it is already present in the conversation. Treat it as a scheduling boundary:
 
-Also consider five-hour limits, credits, eligible banked resets, and time until a scheduled reset only when those values are visible on the account page. Never predict an undisclosed reset or query a third-party reset tracker.
+- a nearby reset may support deferring low-value, non-urgent, high-consumption work;
+- it never justifies delaying critical, high-risk, or deadline-bound work;
+- never calculate or claim a reset time that was not provided.
 
-## 4. Select one governance policy / 選擇一項治理策略
+Missing budget data lowers confidence in budget advice but does not block a task-policy recommendation.
+
+## 4. Select one policy / 選擇一項策略
 
 ### PROCEED / 正常執行
 
-Use when allowance is healthy, or the task is high-value and expected resource use is reasonable.
+Use when the task has clear value, manageable risk, and reasonable expected resource use. Also use for protected work that must continue.
 
 ### CONSERVE / 節省資源
 
-Use when allowance is WATCH or CONSTRAINED and the task should continue.
+Use when the task should continue but scope or allowance pressure calls for discipline.
 
 Prefer:
 
 - narrow scope and explicit acceptance criteria;
-- reuse known context;
 - relevant files or modules only;
-- no unnecessary repository-wide rescans;
-- no unnecessary parallel agents;
-- normal reasoning unless evidence justifies escalation;
-- stop immediately when acceptance criteria pass.
+- reuse of known evidence;
+- no unnecessary rescans or parallel work;
+- ordinary reasoning until evidence justifies escalation;
+- immediate stop when acceptance criteria pass.
 
 ### DEFER / 延後
 
-Use when allowance is CONSTRAINED or CRITICAL and the task is low urgency and low consequence if postponed.
+Use when work is low-value, low-urgency, resource-intensive, and safe to postpone.
 
-Never defer critical incident response, safety work, data-integrity repair, security remediation, or another task where waiting creates material risk merely to preserve credits.
+Never defer incident response, safety work, data-integrity repair, security remediation, or work where waiting creates material risk merely to preserve credits.
 
 ### DEEP REASONING JUSTIFIED / 可使用深度推理
 
-Use when risk or value is HIGH and the problem genuinely requires deeper reasoning, or when two properly scoped ordinary attempts failed without resolving the root cause.
+Use when:
 
-Allowance pressure alone must not force a lower-quality approach where correctness is material.
+- risk or value is high and the problem genuinely requires deeper reasoning;
+- two properly scoped ordinary attempts failed;
+- evidence indicates an architectural, concurrency, data-integrity, security, or similarly high-risk problem.
 
-## 5. Escalation rule / 升級規則
+After diagnosis or architecture is settled, return mechanical implementation to ordinary resource use when appropriate.
 
-Before recommending deeper reasoning, check whether the problem can be reduced by better scope, better evidence, tests, logs, or a smaller reproduction.
+## 5. Conflict rules / 衝突規則
 
-Escalate when:
+Apply these priorities:
 
-- two properly scoped attempts failed; or
-- evidence shows an architectural, concurrency, data-integrity, security, or similarly high-risk problem; or
-- incorrect output would create material consequences.
+1. safety, legality, security, and data integrity;
+2. critical business continuity;
+3. value and cost of delay;
+4. allowance conservation;
+5. convenience.
 
-After diagnosis or architecture is settled, recommend returning to ordinary resource use for mechanical implementation when appropriate.
+High allowance does not justify waste. Low allowance does not justify unsafe or incorrect work.
 
-Do not claim the plugin switched a model unless the active platform explicitly exposes and confirms that action.
+## 6. Confidence / 信心程度
 
-## 6. Allowance-aware scheduling / 感知額度的排程
+- **HIGH / 高:** task value, risk, urgency, difficulty, and failure history are known.
+- **MEDIUM / 中:** one non-critical factor is missing.
+- **LOW / 低:** value, risk, or urgency is unclear.
 
-When non-urgent, high-consumption work can wait with little cost and a displayed reset is near, DEFER may be economical.
+Allowance is optional and must not be the sole reason for LOW confidence.
 
-When important work may be blocked:
-
-1. reduce avoidable burn first;
-2. protect allowance for high-value or high-risk work;
-3. consider an eligible banked reset only from account-confirmed facts;
-4. consider paid credits only after free options and timing have been evaluated.
-
-Never execute a reset or purchase.
-
-## 7. Burn-rate rules / 消耗速度規則
-
-If projected exhaustion is at or after the displayed scheduled reset, do not create artificial scarcity.
-
-If projected exhaustion is before the displayed scheduled reset:
-
-- show sustainable burn rate;
-- show required reduction;
-- protect allowance for high-value or high-risk work;
-- postpone low-value batch work before compromising important work.
-
-Do not calculate a precise forecast without defensible timestamps.
-
-## 8. Confidence / 信心程度
-
-- **High:** authenticated allowance, timestamps, and task context are available.
-- **Medium:** account state is known but one planning input is inferred or missing.
-- **Low:** key account or task facts are missing. Give conservative guidance and do not fabricate precision.
-
-## 9. Governing principle / 治理原則
+## 7. Governing principle / 治理原則
 
 **Lowest sufficient intelligence, highest necessary assurance. / 使用足以完成工作的最低合理智慧，保留必要的最高可靠性。**
 
